@@ -1,0 +1,147 @@
+[
+    {
+        "id": "4adcfdf819a4399c",
+        "type": "tab",
+        "label": "LDR",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f28885be6b7f9eab",
+        "type": "mqtt in",
+        "z": "4adcfdf819a4399c",
+        "name": "",
+        "topic": "FCAeI/mqtt/GMA/LDR",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "dbb2841f278f706f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 160,
+        "wires": [
+            [
+                "d64d4a64ada13bf5"
+            ]
+        ]
+    },
+    {
+        "id": "d64d4a64ada13bf5",
+        "type": "json",
+        "z": "4adcfdf819a4399c",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 410,
+        "y": 160,
+        "wires": [
+            [
+                "5f406f7443285763"
+            ]
+        ]
+    },
+    {
+        "id": "5f406f7443285763",
+        "type": "function",
+        "z": "4adcfdf819a4399c",
+        "name": "LDR1",
+        "func": "msg.payload = msg.payload.sensor1;\nif(msg.payload=='1'){\n    msg.payload= 'Cajon 1 libre';\n}\nelse{\n    msg.payload= 'Cajon 1 ocupado';\n}\nmsg.topic=\"Fotoresistencia\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 590,
+        "y": 160,
+        "wires": [
+            [
+                "0d2e99d040987d5b",
+                "1ce0237469898cb5"
+            ]
+        ]
+    },
+    {
+        "id": "0d2e99d040987d5b",
+        "type": "ui_text",
+        "z": "4adcfdf819a4399c",
+        "group": "b0105a50fc4422b4",
+        "order": 0,
+        "width": "3",
+        "height": "2",
+        "name": "Cajon 1",
+        "label": "Cajon 1",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 780,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1ce0237469898cb5",
+        "type": "debug",
+        "z": "4adcfdf819a4399c",
+        "name": "debug 15",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "dbb2841f278f706f",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "b0105a50fc4422b4",
+        "type": "ui_group",
+        "name": "LDRs",
+        "tab": "47e133ea1f5fafcc",
+        "order": 1,
+        "disp": true,
+        "width": "9",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "47e133ea1f5fafcc",
+        "type": "ui_tab",
+        "name": "Sensor de Luz",
+        "icon": "dashboard",
+        "order": 8,
+        "disabled": false,
+        "hidden": false
+    }
+]
